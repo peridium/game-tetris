@@ -52,110 +52,113 @@ public interface Constant
 	public static final int WEST  = 3;
 
 	//Mes differentes formes disponibles dans ce tetris
-//	public static final int SHAPE_LONG 	= 0; // ---
-//	public static final int SHAPE_IL = 1; // Inverse L
-//	public static final int SHAPE_L = 2; // L
-//	public static final int SHAPE_SQUARE = 3; // O
-//	public static final int SHAPE_S = 4; // S
-//	public static final int SHAPE_IS = 5;// Inverse S
-//	public static final int SHAPE_T = 6; // T
 	public static final int SHAPE_MAX_TYPES	= 7; // Nombre de formes disponibles, nous sert pour la generation d'une nouvelle forme.
 
-	//Cette table contient tous les formes possibles dans un tetris.
-	public static final int SHAPE_TABLE_ELEMS_PER_ROW = 3;
-	public static final int SHAPE_TABLE_ROWS_PER_TYPE = 4;
+	//Cette table contient tous les formes possibles du tetris.
+	public static final int SHAPE_TABLE_ELEMS_PER_ROW = 3;//Une forme dispose de 3 éléments dans le tableau ci-dessous.
+	public static final int SHAPE_TABLE_ROWS_PER_TYPE = 4;//Une forme peut avoir 4 orientation ou etat possible dans la grille.
+	
+	//Offset permet d'aller cherche la forme correspondante dans le tableau ci-dessous.
+	//Par exemple : SHAPE_L -> type = 12*2 = 24eme case du tableau puis ensuite l'orientation de celle-ci element1 = type+NORH , element2 = type+NORH+1 , element3 = type+NORH+2
 	public static final int SHAPE_TABLE_TYPE_OFFSET	  = SHAPE_TABLE_ROWS_PER_TYPE * SHAPE_TABLE_ELEMS_PER_ROW;
 	public static final int[] SHAPE_TABLE =
 		{
+		
+		/**
+		 * Table des differentes formes.
+		 */
+		
+		
+		
 		/*
 		 * SHAPE_LONG
 		 */
 		
-		//OR_NORTH (elem1,2,3, mincol, maxcol)
+		//NORTH
 		C_UP, C_DOWN, C_UP*2, //I
-		//OR_EAST (elem1,2,3)
+		//EAST
 		C_LEFT, C_RIGHT, C_RIGHT*2, //---
-		//OR_SOUTH (elem1,2,3)
+		//SOUTH
 		C_UP, C_DOWN, C_DOWN*2, //I
-		//OR_WEST (elem1,2,3)
+		//WEST
 		C_LEFT, C_RIGHT, C_LEFT*2,//---
 
 		/*
 		 * SHAPE_IL
 		 */
 		
-		//OR_NORTH (elem1,2,3, mincol, maxcol)
-		C_UP, C_DOWN, C_UP+C_RIGHT,//backwards L
-		//OR_EAST (elem1,2,3)
+		//NORTH
+		C_UP, C_DOWN, C_UP+C_RIGHT,//inverse L
+		//EAST
 		C_LEFT, C_RIGHT, C_RIGHT+C_DOWN,//--|
-		//OR_SOUTH (elem1,2,3)
+		//SOUTH
 		C_UP, C_DOWN, C_DOWN+C_LEFT,//inverse L
-		//OR_WEST (elem1,2,3)
+		//WEST
 		C_LEFT, C_RIGHT, C_LEFT+C_UP,//|--
 
 		/*
 		 * SHAPE_L
 		 */
 		
-		//OR_NORTH (elem1,2,3, mincol, maxcol)
+		//NORTH
 		C_UP, C_DOWN, C_UP+C_LEFT,//L
-		//OR_EAST (elem1,2,3)
+		//EAST
 		C_LEFT, C_RIGHT, C_RIGHT+C_UP,//--|
-		//OR_SOUTH (elem1,2,3)
+		//SOUTH
 		C_UP, C_DOWN, C_DOWN+C_RIGHT,//L
-		//OR_WEST (elem1,2,3)
+		//WEST
 		C_LEFT, C_RIGHT, C_LEFT+C_DOWN,//|--
 
 		/*
 		 * SHAPE_SQUARE
 		 */
 		
-		//OR_NORTH (elem1,2,3, mincol, maxcol)
+		//NORTH (elem1,2,3, mincol, maxcol)
 		C_RIGHT, C_DOWN, C_RIGHT+C_DOWN,//O
-		//OR_EAST (elem1,2,3)
+		//EAST (elem1,2,3)
 		C_RIGHT, C_DOWN, C_RIGHT+C_DOWN,//O
-		//OR_SOUTH (elem1,2,3)
+		//SOUTH (elem1,2,3)
 		C_RIGHT, C_DOWN, C_RIGHT+C_DOWN,//O
-		//OR_WEST (elem1,2,3)
+		//WEST (elem1,2,3)
 		C_RIGHT, C_DOWN, C_RIGHT+C_DOWN,//O
 
 		/*
 		 * SHAPE_S
 		 */
 		
-		//OR_NORTH
+		//NORTH
 		C_DOWN+C_LEFT, C_DOWN, C_RIGHT,//_|-
-		//OR_EAST
+		//EAST
 		C_UP, C_RIGHT, C_RIGHT+C_DOWN,//|-i
-		//OR_SOUTH
+		//SOUTH
 		C_DOWN+C_LEFT, C_DOWN, C_RIGHT,//_|-
-		//OR_WEST
+		//WEST
 		C_UP, C_RIGHT, C_RIGHT+C_DOWN,//|-i
 
 		/*
 		 * SHAPE_IS
 		 */
 		
-		//OR_NORTH (elem1,2,3, mincol, maxcol)
+		//NORTH
 		C_LEFT, C_DOWN, C_DOWN+C_RIGHT,//-|_
-		//OR_EAST (elem1,2,3)
+		//EAST
 		C_UP+C_RIGHT, C_RIGHT, C_DOWN,//i-|
-		//OR_SOUTH (elem1,2,3)
+		//SOUTH
 		C_LEFT, C_DOWN, C_DOWN+C_RIGHT,//-|_
-		//OR_WEST (elem1,2,3)
+		//WEST
 		C_UP+C_RIGHT, C_RIGHT, C_DOWN,//i-|
 
 		/*
 		 * SHAPE_T
 		 */
 		
-		//OR_NORTH (elem1,2,3, mincol, maxcol)
+		//NORTH
 		C_UP, C_DOWN, C_RIGHT,//T
-		//OR_EAST (elem1,2,3)
+		//EAST
 		C_LEFT, C_DOWN, C_RIGHT,//T
-		//OR_SOUTH (elem1,2,3)
+		//SOUTH
 		C_LEFT, C_DOWN, C_UP,//T
-		//OR_WEST (elem1,2,3)
+		//WEST
 		C_LEFT, C_UP, C_RIGHT,//T
 		};
 }

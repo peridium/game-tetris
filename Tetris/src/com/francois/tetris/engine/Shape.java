@@ -12,8 +12,6 @@ import com.francois.tetris.constant.Constant;
  */
 public class Shape implements Constant
 {
-	//SHAPES
-	//a value that lets playfield skip the test of shape cells
 	private static final int DONT_CHECK_CELL = -1000;
 
 	private Grid grid;

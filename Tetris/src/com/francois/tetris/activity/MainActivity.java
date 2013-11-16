@@ -5,6 +5,7 @@ import com.francois.tetris.customView.TetrisView;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 
 public class MainActivity extends Activity 
 {
@@ -14,7 +15,7 @@ public class MainActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		
+		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// on autorise que le mode portrait
 		this.setContentView(R.layout.activity_main);
 		this.tetrisView = (TetrisView) this.findViewById(R.id.tetrisGrid);
 	}

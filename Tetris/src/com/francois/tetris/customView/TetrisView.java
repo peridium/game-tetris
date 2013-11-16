@@ -46,8 +46,8 @@ public class TetrisView extends View implements Constant
 	private Paint paint;
 
 	private boolean hasFocus;
-	private long nextUpdate; 	//time stamp when next update can be called
-	private long lastTime;	//allow updates of shape independently from gravity by checking this
+	private long nextUpdate;
+	private long allowUptadeShage;
 
 	//current game action fired by player
 	private int currentAction;
@@ -112,7 +112,7 @@ public class TetrisView extends View implements Constant
 		this.currentShape.setInited(false);
 		this.currentAction = ACTION_NONE;
 		this.nextUpdate = 0;
-		this.lastTime = 1;
+		this.allowUptadeShage = 1;
 
 		this.grid.init();
 	}
@@ -154,8 +154,8 @@ public class TetrisView extends View implements Constant
 		@Override
 		public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
 		{
-			if(currentShape.getState() != STATE_LOCKED)
-			{
+//			if(currentShape.getState() != STATE_LOCKED)
+//			{
 				Log.e("Colonne", (int)Math.abs(e2.getX()/grid.getCellW())+"");
 				Log.e("Ligne", (int)Math.abs(e2.getY()/grid.getCellH())+"");
 				
@@ -164,7 +164,6 @@ public class TetrisView extends View implements Constant
 					if(currentColShape != ((int)Math.abs(e2.getX()/grid.getCellW())))
 					{	
 						currentColShape = ((int)Math.abs(e2.getX()/grid.getCellW()));
-						//currentShape.moveShape(C_RIGHT);
 						currentShape.updateShape(ACTION_RIGHT);
 					}
 				}
@@ -173,21 +172,19 @@ public class TetrisView extends View implements Constant
 					if(currentColShape != ((int)Math.abs(e2.getX()/grid.getCellW())))
 					{	
 						currentColShape = ((int)Math.abs(e2.getX()/grid.getCellW()));
-						//currentShape.moveShape(C_LEFT);
 						currentShape.updateShape(ACTION_LEFT);
 					}
 				}
 
-				if(e2.getY() > e1.getY() && (e2.getY() - e1.getY()) > SWIPE_MIN_DISTANCE)
+				if(e2.getY() > e1.getY() && (e2.getY() - e1.getY()) > SWIPE_MIN_DISTANCE)//on glisse le doight de haut en bas
 				{
 					if(currentRowShape != ((int)Math.abs(e2.getY()/grid.getCellH())))
 					{
 						currentRowShape = ((int)Math.abs(e2.getY()/grid.getCellH()));
-						//currentShape.moveShape(C_DOWN);
 						currentShape.updateShape(ACTION_DOWN);
 					}
 				}
-			}
+//			}
 			return false;
 		}
 	}
@@ -239,9 +236,9 @@ public class TetrisView extends View implements Constant
 				this.currentShape.updateShape(currentAction);
 				this.currentAction = ACTION_NONE;
 
-				if(currentTime - lastTime > SPPED_RATE || currentShape.IsFalling())
+				if(currentTime - allowUptadeShage > SPPED_RATE || currentShape.IsFalling())
 				{
-					lastTime = currentTime;
+					allowUptadeShage = currentTime;
 
 					boolean shapeIsLocked = currentShape.addGravity();
 					if(shapeIsLocked)
@@ -256,9 +253,6 @@ public class TetrisView extends View implements Constant
 		return;
 	}
 
-	/**
-	 * Dessine le jeu
-	 */
 	@Override
 	protected void onDraw(Canvas canvas) 
 	{
